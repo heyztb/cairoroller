@@ -231,8 +231,6 @@ let (more_results, new_hash) = continue_dice_chain(final_hash, more_dice);
 
 ## 📄 License
 
-## License
-
 This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details.
 
 ### Commercial Licensing
