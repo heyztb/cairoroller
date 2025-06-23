@@ -73,7 +73,7 @@ fn continue_dice_chain(previous_hash: felt252, num_dice: u32) -> (Array<u8>, fel
 /// If hash_checkpoint is 0, starts a new chain with the seed
 /// If hash_checkpoint is non-zero, continues from that checkpoint
 #[executable]
-fn main(seed: felt252, num_dice: u32, hash_checkpoint: felt252) -> Array<u8> {
+fn main(seed: felt252, hash_checkpoint: felt252, num_dice: u32) -> Array<u8> {
     let commitment = generate_commitment(seed);
 
     println!("=== Continuous Hash Chain Dice Rolling ===");
@@ -90,12 +90,6 @@ fn main(seed: felt252, num_dice: u32, hash_checkpoint: felt252) -> Array<u8> {
     };
     println!("Results: {:?}", results);
     println!("Final hash (for chain continuation): {}", final_hash);
-
-    // Demonstrate chain continuation
-    println!("\n=== Chain Continuation Demo ===");
-    let (more_results, next_hash) = continue_dice_chain(final_hash, 3);
-    println!("Continued with 3 more rolls: {:?}", more_results);
-    println!("New final hash: {}", next_hash);
 
     results
 }
