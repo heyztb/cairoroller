@@ -41,7 +41,6 @@ fn generate_commitment(seed: felt252) -> felt252 {
 /// Returns both the dice results and the final hash for chain continuation
 fn roll_dice_chain(starting_hash: felt252, num_dice: u32) -> (Array<u8>, felt252) {
     assert(num_dice > 0, 'Number of dice must be positive');
-    assert(num_dice <= 1000, 'Too many dice requested');
 
     let mut results = ArrayTrait::new();
     let mut current_hash = starting_hash;
@@ -71,11 +70,10 @@ fn continue_dice_chain(previous_hash: felt252, num_dice: u32) -> (Array<u8>, fel
 
 /// Main executable function for the dice roller
 /// Demonstrates the continuous hash chain approach
+/// If hash_checkpoint is 0, starts a new chain with the seed
+/// If hash_checkpoint is non-zero, continues from that checkpoint
 #[executable]
-fn main(num_dice: u32) -> Array<u8> {
-    // Generate a pseudo-random seed (in production, use external randomness)
-    let seed = 0x123456789abcdef_felt252;
-
+fn main(seed: felt252, num_dice: u32, hash_checkpoint: felt252) -> Array<u8> {
     let commitment = generate_commitment(seed);
 
     println!("=== Continuous Hash Chain Dice Rolling ===");
@@ -83,8 +81,13 @@ fn main(num_dice: u32) -> Array<u8> {
     println!("Commitment (published before rolling): {}", commitment);
     println!("Seed (revealed after rolling): {}", seed);
 
-    // Start the hash chain
-    let (results, final_hash) = start_dice_chain(seed, num_dice);
+    // Start the hash chain or continue from checkpoint
+    let (results, final_hash) = if hash_checkpoint == 0 {
+        start_dice_chain(seed, num_dice)
+    } else {
+        println!("Continuing from hash checkpoint: {}", hash_checkpoint);
+        continue_dice_chain(hash_checkpoint, num_dice)
+    };
     println!("Results: {:?}", results);
     println!("Final hash (for chain continuation): {}", final_hash);
 
