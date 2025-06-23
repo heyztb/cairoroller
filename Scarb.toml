@@ -1,0 +1,38 @@
+[package]
+name = "cairoroller"
+version = "0.1.0"
+edition = "2024_07"
+
+# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest.html
+
+[dependencies]
+cairo_execute = "2.11.4"
+
+[[target.executable]]
+
+[cairo]
+enable-gas = false
+
+[dev-dependencies]
+snforge_std = "0.43.1"
+
+[scripts]
+test = "snforge test"
+
+[tool.scarb]
+allow-prebuilt-plugins = ["snforge_std"]
+
+# Visit https://foundry-rs.github.io/starknet-foundry/appendix/scarb-toml.html for more information
+
+# [tool.snforge]                                             # Define `snforge` tool section
+# exit_first = true                                          # Stop tests execution immediately upon the first failure
+# fuzzer_runs = 1234                                         # Number of runs of the random fuzzer
+# fuzzer_seed = 1111                                         # Seed for the random fuzzer
+
+# [profile.dev.cairo]                                        # Configure Cairo compiler
+# unstable-add-statements-code-locations-debug-info = true   # Should be used if you want to use coverage
+# unstable-add-statements-functions-debug-info = true        # Should be used if you want to use coverage/profiler
+# inlining-strategy = "avoid"                                # Should be used if you want to use coverage
+
+# [features]                                                 # Used for conditional compilation
+# enable_for_tests = []                                      # Feature name and list of other features that should be enabled with it
