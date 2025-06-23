@@ -67,8 +67,8 @@ Our commercial license removes these restrictions and provides:
 
 Ready to go commercial? Contact us:
 
-- **Email**: [hi@ztb.dev]
-- **Website**: [ztb.dev]
+- **Email**: [hi (at) ztb dot dev]
+- **Website**: [https://ztb.dev]
 - **Schedule Call**: [https://calendly.com/heyztb/30min]
 
 ### What We Need
